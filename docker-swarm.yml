@@ -28,8 +28,6 @@ services:
       # Configuração de reinicialização: reinicie em caso de falha.
       restart_policy:
         condition: on-failure
-    #Definindo permissão de leitura para o Nginx
-    comand: ["/bin/sh", "-c", "chmod 644 /usr/share/nginx/html/docker.html && nginx -g 'daemon off;'"]
     # Porta para expor o serviço.
     ports:
       - "80:80"
