@@ -6,7 +6,7 @@ services:
     image: nginx:latest
     volumes:
       # Diretório do volume, compartilhando somente o arquivo em modo de leitura.
-      - "./docker-swarm/docker.html:/usr/share/nginx/html/docker.html:ro"
+      - "/home/docker-swarm-exemplo/docker-swarm/docker-swarm/docker.html:/usr/share/nginx/html/docker.html:ro"
     networks:
       # Permitindo acesso universal ao container.
       - global
@@ -31,6 +31,8 @@ services:
     # Porta para expor o serviço.
     ports:
       - "80:80"
+    #Definindo permissão de leitura para o Nginx
+    comand: ["/bin/sh", "-c", "chmod 644 /usr/share/nginx/html/docker.html && nginx -g 'daemon off;'"]
 networks:
   # Apelido do networks.
   global:
