@@ -6,7 +6,7 @@ services:
     image: nginx:latest
     volumes:
       # Diretório do volume, compartilhando somente o arquivo em modo de leitura.
-      - ./docker-swarm/docker.html:/usr/share/nginx/html/docker.html:ro
+      - ./docker-swarm/docker.html:/usr/share/nginx/html/index.html:ro
     networks:
       # Permitindo acesso universal ao container.
       - global
