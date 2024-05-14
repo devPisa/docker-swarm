@@ -1,38 +1,38 @@
 version: "3.9"
-#O serviço que ta subindo no docker.
+# O serviço que está sendo executado no Docker.
 services:
   web:
-    #Imagem que estou usando
+    # Imagem que estamos usando.
     image: nginx:latest
     volumes:
-      #Diretorio do volume, compartilhando somente o arquivo em read only
-      - - ./docker-swarm/docker-swarm/docker.html:/usr/share/nginx/html/docker.html:ro
+      # Diretório do volume, compartilhando somente o arquivo em modo de leitura.
+      - "./docker-swarm/docker.html:/usr/share/nginx/html/docker.html:ro"
     networks:
-      #Permitindo acesso universal ao container
+      # Permitindo acesso universal ao container.
       - global
     deploy:
-      #Configurações do swarm para limitar os containers
+      # Configurações do swarm para limitar os containers.
       replicas: 3
-      #Recursos de cada container
+      # Recursos de cada container.
       resources:
-        #Quantidade maxima de recurso que o container pode usar
+        # Quantidade máxima de recursos que o container pode usar.
         limits:
           cpus: "1"
           memory: 1G
-          #Quantidade de processos maximos da aplicação, configuração de risco
-          #pids: 100
-        #Quantidade reservada minima para esse container
+          # Quantidade máxima de processos da aplicação, configuração de risco.
+          # pids: 100
+        # Quantidade reservada mínima para este container.
         reservations:
           cpus: "0.1"
           memory: 20M
-        #Configuração de restart, em qualquer falha ele vai reiniciar
+      # Configuração de reinicialização: reinicie em caso de falha.
       restart_policy:
         condition: on-failure
-    #Porta para expor o serviço
+    # Porta para expor o serviço.
     ports:
       - "80:80"
 networks:
-  #Apelido do networks
+  # Apelido do networks.
   global:
-    #driver overlay é proprio do docker swarm
+    # driver overlay é próprio do Docker Swarm.
     driver: overlay
