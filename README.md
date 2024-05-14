@@ -3,6 +3,10 @@
 ```sh
 docker swarm init
 ```
+```sh
+# Caso tenha alguma aplicação rodando
+docker swarm leave --force 
+```
 
 - Subir serviços no Swarm
 
@@ -42,3 +46,4 @@ docker exec -it {id} bash
 apt-get install ifconfig -y && ifconfig
 # localize por 'eth0' ou semelhante, e então veja o ip em 'inet'
 ```
+

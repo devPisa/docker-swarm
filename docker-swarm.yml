@@ -6,7 +6,7 @@ services:
     image: nginx:latest
     volumes:
       #Diretorio do volume, compartilhando somente o arquivo em read only
-      - ./docker-swarm/docker.html:/usr/share/nginx/docker-swarm/docker.html:ro
+      - - ./docker-swarm/docker-swarm/docker.html:/usr/share/nginx/html/docker.html:ro
     networks:
       #Permitindo acesso universal ao container
       - global
@@ -28,7 +28,7 @@ services:
         #Configuração de restart, em qualquer falha ele vai reiniciar
       restart_policy:
         condition: on-failure
-    #Porta para expor o serviço      
+    #Porta para expor o serviço
     ports:
       - "80:80"
 networks:
